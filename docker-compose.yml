@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  db:
+    image: oracle/database:19.3.0-ee
+    build:
+      context: "./19.3.0"
+      dockerfile: "Dockerfile"
+    container_name: honore-db
+    restart: unless-stopped
+    ports:
+      - 1521:1521
+      - 5500:5500
+    # volumes:
+    #   - ./db/oradata:/opt/oracle/oradata
+    #   - ./db/datapump:/home/oracle/datapump
+    environment:
+      - ORACLE_SID=ORCLCDB
+      - ORACLE_PWD=oracle19
+      - ORACLE_PDB=oracle
+      - ORACLE_CHARACTERSET=WE8ISO8859P15
